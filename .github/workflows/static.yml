@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Style Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            display: block;
+            margin: 10px 0;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leadership Style Quiz</h1>
+        <form id="quiz-form">
+            <!-- Questions -->
+            <div class="question">
+                <p>1. I ensure tasks are completed on time, even if it requires strict rules.</p>
+                <label><input type="radio" name="q1" value="1"> Strongly Disagree</label>
+                <label><input type="radio" name="q1" value="2"> Disagree</label>
+                <label><input type="radio" name="q1" value="3"> Neutral</label>
+                <label><input type="radio" name="q1" value="4"> Agree</label>
+                <label><input type="radio" name="q1" value="5"> Strongly Agree</label>
+            </div>
+            <div class="question">
+                <p>2. I set high standards for myself and my team to achieve excellence.</p>
+                <label><input type="radio" name="q2" value="1"> Strongly Disagree</label>
+                <label><input type="radio" name="q2" value="2"> Disagree</label>
+                <label><input type="radio" name="q2" value="3"> Neutral</label>
+                <label><input type="radio" name="q2" value="4"> Agree</label>
+                <label><input type="radio" name="q2" value="5"> Strongly Agree</label>
+            </div>
+            <div class="question">
+                <p>3. I focus on supporting and developing my team through feedback.</p>
+                <label><input type="radio" name="q3" value="1"> Strongly Disagree</label>
+                <label><input type="radio" name="q3" value="2"> Disagree</label>
+                <label><input type="radio" name="q3" value="3"> Neutral</label>
+                <label><input type="radio" name="q3" value="4"> Agree</label>
+                <label><input type="radio" name="q3" value="5"> Strongly Agree</label>
+            </div>
+            <div class="question">
+                <p>4. I prioritize fostering a collaborative and positive atmosphere for my team.</p>
+                <label><input type="radio" name="q4" value="1"> Strongly Disagree</label>
+                <label><input type="radio" name="q4" value="2"> Disagree</label>
+                <label><input type="radio" name="q4" value="3"> Neutral</label>
+                <label><input type="radio" name="q4" value="4"> Agree</label>
+                <label><input type="radio" name="q4" value="5"> Strongly Agree</label>
+            </div>
+            <div class="question">
+                <p>5. I communicate a clear vision and inspire my team to achieve long-term goals.</p>
+                <label><input type="radio" name="q5" value="1"> Strongly Disagree</label>
+                <label><input type="radio" name="q5" value="2"> Disagree</label>
+                <label><input type="radio" name="q5" value="3"> Neutral</label>
+                <label><input type="radio" name="q5" value="4"> Agree</label>
+                <label><input type="radio" name="q5" value="5"> Strongly Agree</label>
+            </div>
+            <button type="button" class="submit-btn" onclick="calculateResult()">Submit</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateResult() {
+            const form = document.getElementById('quiz-form');
+            const answers = new FormData(form);
+            let totalScore = 0;
+
+            for (let value of answers.values()) {
+                totalScore += parseInt(value);
+            }
+
+            const leadershipStyles = {
+                Coercive: "You are exactly a Coercive leader. You thrive on structure, discipline, and results. Your leadership style emphasizes efficiency and control, making you effective in high-pressure situations where quick decision-making is essential.",
+                Pacesetting: "You are exactly a Pacesetting leader. You set high standards for yourself and your team, leading by example. You inspire others by pushing them to perform their best, though your focus on excellence can sometimes create a high-pressure environment.",
+                Coaching: "You are exactly a Coaching leader. You prioritize the development and growth of your team, offering guidance and feedback. Your leadership style nurtures others, helping them reach their full potential.",
+                Affiliative: "You are exactly an Affiliative leader. You value emotional well-being and harmony, fostering positive relationships within your team. Your approach is centered on building trust and creating a supportive environment.",
+                Authoritative: "You are exactly an Authoritative leader. You inspire others by communicating a clear vision and long-term goals. Your leadership style is motivational and visionary, encouraging your team to believe in a shared purpose."
+            };
+
+            let result = '';
+
+            if (totalScore <= 10) {
+                result = leadershipStyles.Coercive;
+            } else if (totalScore <= 15) {
+                result = leadershipStyles.Pacesetting;
+            } else if (totalScore <= 20) {
+                result = leadershipStyles.Coaching;
+            } else if (totalScore <= 23) {
+                result = leadershipStyles.Affiliative;
+            } else {
+                result = leadershipStyles.Authoritative;
+            }
+
+            document.getElementById('result').textContent = result;
+        }
+    </script>
+</body>
+</html>
